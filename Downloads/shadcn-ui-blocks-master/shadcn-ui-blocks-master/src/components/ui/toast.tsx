@@ -14,7 +14,7 @@ const ToastViewport = (
     className,
     ...props
   }: React.ComponentPropsWithoutRef<typeof ToastPrimitives.Viewport> & {
-    ref: React.RefObject<React.ElementRef<typeof ToastPrimitives.Viewport>>;
+    ref?: React.RefObject<React.ElementRef<typeof ToastPrimitives.Viewport>>;
   }
 ) => (<ToastPrimitives.Viewport
   ref={ref}
@@ -68,7 +68,7 @@ const ToastAction = (
     className,
     ...props
   }: React.ComponentPropsWithoutRef<typeof ToastPrimitives.Action> & {
-    ref: React.RefObject<React.ElementRef<typeof ToastPrimitives.Action>>;
+    ref?: React.RefObject<React.ElementRef<typeof ToastPrimitives.Action>>;
   }
 ) => (<ToastPrimitives.Action
   ref={ref}
@@ -86,7 +86,7 @@ const ToastClose = (
     className,
     ...props
   }: React.ComponentPropsWithoutRef<typeof ToastPrimitives.Close> & {
-    ref: React.RefObject<React.ElementRef<typeof ToastPrimitives.Close>>;
+    ref?: React.RefObject<React.ElementRef<typeof ToastPrimitives.Close>>;
   }
 ) => (<ToastPrimitives.Close
   ref={ref}
@@ -107,7 +107,7 @@ const ToastTitle = (
     className,
     ...props
   }: React.ComponentPropsWithoutRef<typeof ToastPrimitives.Title> & {
-    ref: React.RefObject<React.ElementRef<typeof ToastPrimitives.Title>>;
+    ref?: React.RefObject<React.ElementRef<typeof ToastPrimitives.Title>>;
   }
 ) => (<ToastPrimitives.Title
   ref={ref}
@@ -122,7 +122,7 @@ const ToastDescription = (
     className,
     ...props
   }: React.ComponentPropsWithoutRef<typeof ToastPrimitives.Description> & {
-    ref: React.RefObject<React.ElementRef<typeof ToastPrimitives.Description>>;
+    ref?: React.RefObject<React.ElementRef<typeof ToastPrimitives.Description>>;
   }
 ) => (<ToastPrimitives.Description
   ref={ref}

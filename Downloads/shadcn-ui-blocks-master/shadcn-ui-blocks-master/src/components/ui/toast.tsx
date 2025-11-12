@@ -48,7 +48,9 @@ const Toast = (
     className,
     variant,
     ...props
-  }
+  }: React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> & {
+    ref?: React.RefObject<React.ElementRef<typeof ToastPrimitives.Root>>;
+  } & VariantProps<typeof toastVariants>
 ) => {
   return (
     <ToastPrimitives.Root

@@ -179,7 +179,7 @@ const TreeIndicator = (
     className,
     ...props
   }: React.HTMLAttributes<HTMLDivElement> & {
-    ref: React.RefObject<HTMLDivElement>;
+    ref?: React.RefObject<HTMLDivElement>;
   }
 ) => {
   const { direction } = useTree();

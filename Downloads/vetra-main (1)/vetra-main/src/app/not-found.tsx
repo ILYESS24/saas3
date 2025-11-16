@@ -27,7 +27,7 @@ const NotFoundPage = () => {
                             This page doesn&apos;t exist. Please check the URL and try again.
                         </p>
                         <Link href="/">
-                            <Button variant="subtle" className="mt-8">
+                            <Button variant="outline" className="mt-8">
                                 <ArrowLeftIcon className="size-4" />
                                 Back
                             </Button>

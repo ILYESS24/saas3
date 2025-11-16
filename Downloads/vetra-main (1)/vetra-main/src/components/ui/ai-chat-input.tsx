@@ -120,19 +120,18 @@ const AIChatInput = () => {
   };
  
   return (
-    <div className="w-full flex justify-center items-center text-black">
+    <div className="w-full flex justify-center items-center text-black relative z-50">
       <motion.div
         ref={wrapperRef}
-        className="w-full max-w-3xl"
+        className="w-full max-w-3xl relative z-50"
         variants={containerVariants}
         animate={isActive || inputValue ? "expanded" : "collapsed"}
         initial="collapsed"
-        style={{ overflow: "hidden", borderRadius: 32, background: "#fff" }}
-        onClick={handleActivate}
+        style={{ overflow: "hidden", borderRadius: 32, background: "#fff", position: "relative", zIndex: 50 }}
       >
-        <div className="flex flex-col items-stretch w-full h-full">
+        <div className="flex flex-col items-stretch w-full h-full" style={{ position: "relative", zIndex: 50 }}>
           {/* Input Row */}
-          <div className="flex items-center gap-2 p-3 rounded-full bg-white max-w-3xl w-full">
+          <div className="flex items-center gap-2 p-3 rounded-full bg-white max-w-3xl w-full relative z-50" style={{ position: "relative", zIndex: 50 }}>
             <button
               className="p-3 rounded-full hover:bg-gray-100 transition"
               title="Attach file"
@@ -143,17 +142,22 @@ const AIChatInput = () => {
             </button>
  
             {/* Text Input & Placeholder */}
-            <div className="relative flex-1">
+            <div className="relative flex-1" style={{ position: "relative", zIndex: 100 }}>
               <input
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
-                className="flex-1 border-0 outline-0 rounded-md py-2 text-base bg-transparent w-full font-normal"
-                style={{ position: "relative", zIndex: 1 }}
+                className="flex-1 border-0 outline-0 rounded-md py-2 text-base bg-transparent w-full font-normal relative z-50"
+                style={{ position: "relative", zIndex: 100, pointerEvents: "auto" }}
                 onFocus={handleActivate}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleActivate();
+                }}
+                tabIndex={0}
               />
-              <div className="absolute left-0 top-0 w-full h-full pointer-events-none flex items-center px-3 py-2">
+              <div className="absolute left-0 top-0 w-full h-full pointer-events-none flex items-center px-3 py-2" style={{ zIndex: 0 }}>
                 <AnimatePresence mode="wait">
                   {showPlaceholder && !isActive && !inputValue && (
                     <motion.span
@@ -164,6 +168,7 @@ const AIChatInput = () => {
                         overflow: "hidden",
                         textOverflow: "ellipsis",
                         zIndex: 0,
+                        pointerEvents: "none",
                       }}
                       variants={placeholderContainerVariants}
                       initial="initial"
@@ -176,7 +181,7 @@ const AIChatInput = () => {
                           <motion.span
                             key={i}
                             variants={letterVariants}
-                            style={{ display: "inline-block" }}
+                            style={{ display: "inline-block", pointerEvents: "none" }}
                           >
                             {char === " " ? "\u00A0" : char}
                           </motion.span>

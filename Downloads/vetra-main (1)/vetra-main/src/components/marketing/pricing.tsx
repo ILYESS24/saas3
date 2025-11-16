@@ -96,7 +96,7 @@ const Plan = ({ plan, billPlan }: { plan: PLAN, billPlan: Plan }) => {
                 </p>
             </div>
             <div className="flex flex-col items-start w-full px-4 py-2 md:px-8">
-                <Button size="lg" variant="white" className="w-full">
+                <Button size="lg" variant="default" className="w-full">
                     {plan.buttonText}
                 </Button>
                 <div className="h-8 overflow-hidden w-full mx-auto">

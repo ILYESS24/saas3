@@ -2,15 +2,7 @@
 
 export const dynamic = 'force-dynamic';
 
-import Wrapper from "@/components/global/wrapper";
-import Analysis from "@/components/marketing/analysis";
-import Companies from "@/components/marketing/companies";
-import CTA from "@/components/marketing/cta";
-import Features from "@/components/marketing/features";
-import Integration from "@/components/marketing/integration";
-import LanguageSupport from "@/components/marketing/lang-support";
-import Pricing from "@/components/marketing/pricing";
-import { PromptingIsAllYouNeed } from "@/components/prompting-hero";
+import { GooeyText } from "@/components/ui/gooey-text-morphing";
 import { useEffect } from "react";
 import { renderCanvas } from "@/components/canvas-effect";
 
@@ -26,18 +18,15 @@ const HomePage = () => {
     return (
         <div className="bg-black min-h-screen relative">
             <canvas id="canvas" className="fixed top-0 left-0 w-full h-full pointer-events-none z-0" />
-            <div className="relative w-full h-screen z-[1]">
-                <PromptingIsAllYouNeed />
+            <div className="relative w-full h-screen z-[1] flex items-center justify-center">
+                <GooeyText 
+                    texts={["PROMPTING", "IS ALL", "YOU NEED"]}
+                    morphTime={1}
+                    cooldownTime={0.25}
+                    className="w-full"
+                    textClassName="text-white"
+                />
             </div>
-            <Wrapper className="py-20 relative bg-black z-10">
-                <Companies />
-                <Features />
-                <Analysis />
-                <Integration />
-                <Pricing />
-                <LanguageSupport />
-                <CTA />
-            </Wrapper>
         </div>
     )
 };

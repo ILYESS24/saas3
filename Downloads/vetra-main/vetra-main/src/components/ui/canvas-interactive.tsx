@@ -224,6 +224,7 @@ export const renderCanvas = function () {
   if (!ctx) return;
   ctx.running = true;
   ctx.frame = 1;
+  // @ts-ignore
   f = new n({
     phase: Math.random() * 2 * Math.PI,
     amplitude: 85,

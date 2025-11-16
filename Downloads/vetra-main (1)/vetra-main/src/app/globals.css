@@ -164,7 +164,11 @@ img {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-base;
+    font-family: var(--font-base), 'Poppins', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading), 'Poppins', sans-serif;
   }
 }
 

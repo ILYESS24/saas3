@@ -16,6 +16,19 @@ const HomePage = () => {
     const router = useRouter();
     const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+    // Composant de bouton avec le style moderne
+    const ModernButton = ({ children, onClick, className = "" }: { children: React.ReactNode; onClick?: () => void; className?: string }) => (
+        <button
+            onClick={onClick}
+            className={`flex items-center gap-3 bg-black text-white px-6 py-4 rounded-full font-semibold text-base hover:bg-gray-900 transition-colors shadow-lg ${className}`}
+        >
+            <span>{children}</span>
+            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                <ArrowUpRight className="w-4 h-4 text-black" />
+            </div>
+        </button>
+    );
+
     const faqs = [
         {
             question: "What services does Awake Agency offer?",
@@ -44,7 +57,7 @@ const HomePage = () => {
     ];
 
     return (
-        <div className="bg-white min-h-screen w-full">
+        <div className="min-h-screen w-full relative">
             {/* Bouton de connexion en haut à droite */}
             <button
                 onClick={() => router.push("/login")}
@@ -71,14 +84,12 @@ const HomePage = () => {
                         At Awake, we help small startups tackle the world's biggest challenges with tailored solutions, guiding you from strategy to success in a competitive market.
                     </p>
                     <div className="flex items-center justify-center gap-4 mb-12">
-                        <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-6 text-lg">
+                        <ModernButton onClick={() => router.push("/login")}>
                             Get Started
-                            <ArrowUpRight className="ml-2 w-5 h-5" />
-                        </Button>
-                        <Button size="lg" variant="outline" className="border-2 border-gray-900 px-8 py-6 text-lg">
-                            <Play className="mr-2 w-5 h-5" />
+                        </ModernButton>
+                        <ModernButton onClick={() => {}}>
                             Watch Video
-                        </Button>
+                        </ModernButton>
                     </div>
                     
                     {/* Client Logos */}
@@ -168,14 +179,12 @@ const HomePage = () => {
                     <div className="bg-gray-900 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-4">
                         <div className="text-white text-2xl font-semibold">Start Your Creative Journey with Us!</div>
                         <div className="flex gap-4">
-                            <Button className="bg-white text-gray-900 hover:bg-gray-100">
+                            <ModernButton onClick={() => router.push("/login")}>
                                 Let's Collaborate
-                                <ArrowUpRight className="ml-2 w-4 h-4" />
-                            </Button>
-                            <Button variant="outline" className="border-white text-white hover:bg-white/10">
+                            </ModernButton>
+                            <ModernButton onClick={() => {}}>
                                 View Portfolio
-                                <ArrowUpRight className="ml-2 w-4 h-4" />
-                            </Button>
+                            </ModernButton>
                         </div>
                     </div>
                 </div>
@@ -347,10 +356,9 @@ const HomePage = () => {
                                     <span>License free assets</span>
                                 </li>
                             </ul>
-                            <Button className="w-full bg-gray-900 text-white hover:bg-gray-800">
+                            <ModernButton onClick={() => router.push("/login")} className="w-full">
                                 Let's Collaborate
-                                <ArrowUpRight className="ml-2 w-4 h-4" />
-                            </Button>
+                            </ModernButton>
                         </Card>
                         <Card className="bg-purple-100 border-0 p-8">
                             <h3 className="text-2xl font-bold text-gray-900 mb-2">Pro</h3>
@@ -384,10 +392,9 @@ const HomePage = () => {
                                     <span>License free assets</span>
                                 </li>
                             </ul>
-                            <Button className="w-full bg-gray-900 text-white hover:bg-gray-800">
+                            <ModernButton onClick={() => router.push("/login")} className="w-full">
                                 Let's Collaborate
-                                <ArrowUpRight className="ml-2 w-4 h-4" />
-                            </Button>
+                            </ModernButton>
                         </Card>
                     </div>
                 </div>
@@ -460,10 +467,9 @@ const HomePage = () => {
                     <p className="text-xl text-gray-700 mb-8">
                         Looking to elevate your brand? We craft immersive experiences that captivate, engage, and make your business unforgettable in every interaction.
                     </p>
-                    <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-6 text-lg">
+                    <ModernButton onClick={() => router.push("/login")} className="px-8 py-6 text-lg">
                         Let's craft together
-                        <ArrowUpRight className="ml-2 w-5 h-5" />
-                    </Button>
+                    </ModernButton>
                 </div>
             </section>
 

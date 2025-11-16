@@ -162,7 +162,7 @@ export function GenerativeArtScene() {
     };
   }, []);
 
-  return <div ref={mountRef} className="absolute inset-0 w-full h-full z-0" />;
+  return <div ref={mountRef} className="absolute inset-0 w-full h-full z-[2]" />;
 }
 
 export function AnomalousMatterHero({
@@ -177,15 +177,15 @@ export function AnomalousMatterHero({
   return (
     <section
       role="banner"
-      className="relative w-full h-screen bg-black text-white overflow-hidden"
+      className="relative w-full h-screen bg-transparent text-white overflow-hidden"
     >
-      <Suspense fallback={<div className="w-full h-full bg-black" />}>
+      <Suspense fallback={<div className="w-full h-full bg-transparent" />}>
         <GenerativeArtScene />
       </Suspense>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent z-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/30 to-transparent z-[3]" />
 
-      <div className="relative z-20 flex flex-col items-center justify-end h-full pb-20 md:pb-32 text-center">
+      <div className="relative z-[4] flex flex-col items-center justify-end h-full pb-20 md:pb-32 text-center">
         <div className="max-w-3xl px-4 animate-fade-in-long">
           <h1 className="text-sm font-mono tracking-widest text-white/80 uppercase">
             {title}

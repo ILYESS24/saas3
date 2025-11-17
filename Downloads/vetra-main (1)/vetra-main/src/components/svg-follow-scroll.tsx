@@ -1,53 +1,18 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import React, { useRef } from "react";
+import React from "react";
 
 const Skiper19 = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-  });
+  const { scrollYProgress } = useScroll();
 
   return (
-    <section
-      ref={ref}
-      className="mx-auto flex h-[350vh] w-screen flex-col items-center overflow-hidden bg-white px-4"
-    >
-      <div className="relative flex w-full h-full items-center justify-center">
+    <section className="fixed inset-0 w-screen h-screen pointer-events-none z-0">
+      <div className="relative w-full h-full">
         <LinePath
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 w-full h-full"
           scrollYProgress={scrollYProgress}
         />
-      </div>
-
-      <div className="w-full translate-y-[200vh] bg-black text-white border-t border-white border-b border-white">
-        <div className="py-20 px-6">
-          <h1 className="text-center text-[15.5vw] font-normal leading-[0.9] tracking-tighter lg:text-[16.6vw] mb-20">
-            AURION
-          </h1>
-          <div className="max-w-7xl mx-auto flex w-full flex-col items-start gap-8 px-4 font-normal lg:flex-row lg:justify-between">
-            <div className="flex w-full items-start justify-between gap-12 uppercase lg:w-fit">
-              <p className="w-fit text-sm text-white">
-                PUNJAB, INDIA <br />
-                AND ONLINE
-              </p>
-              <p className="w-fit text-sm text-white">
-                SEP 1, 2025 <br /> THE MOOSA PIND
-              </p>
-            </div>
-            <div className="flex w-full items-start justify-between gap-12 uppercase lg:w-fit">
-              <div className="w-fit text-sm text-white">
-                <p>ONLINE</p>
-                <p>FREE</p>
-              </div>
-              <div className="w-fit text-sm text-white">
-                <p>IN PERSON TICKETS</p>
-                <p>$600</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -66,9 +31,10 @@ const LinePath = ({
 
   return (
     <svg
-      width="1278"
-      height="2319"
+      width="100%"
+      height="100%"
       viewBox="0 0 1278 2319"
+      preserveAspectRatio="xMidYMid meet"
       fill="none"
       overflow="visible"
       xmlns="http://www.w3.org/2000/svg"

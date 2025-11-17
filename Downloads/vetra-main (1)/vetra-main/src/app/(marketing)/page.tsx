@@ -124,6 +124,9 @@ const HomePage = () => {
                 </button>
             </div>
 
+            {/* SVG Follow Scroll Effect */}
+            <Skiper19 />
+
             {/* Hero Section */}
             <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 px-6 z-10">
                 <div className="max-w-5xl mx-auto text-center">
@@ -615,9 +618,6 @@ const HomePage = () => {
                     </div>
                 </div>
             </footer>
-
-            {/* SVG Follow Scroll Section */}
-            <Skiper19 />
         </div>
     );
 };

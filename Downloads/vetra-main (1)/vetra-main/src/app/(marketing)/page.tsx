@@ -164,9 +164,6 @@ const HomePage = () => {
                 </div>
             </section>
 
-            {/* SVG Follow Scroll Section */}
-            <Skiper19 />
-
             {/* Logo Cloud Section */}
             <section className="w-full py-16 bg-white z-10 relative overflow-hidden">
                 <motion.div className="max-w-7xl mx-auto px-6 text-center mb-12" {...fadeInUp}>
@@ -618,6 +615,9 @@ const HomePage = () => {
                     </div>
                 </div>
             </footer>
+
+            {/* SVG Follow Scroll Section */}
+            <Skiper19 />
         </div>
     );
 };

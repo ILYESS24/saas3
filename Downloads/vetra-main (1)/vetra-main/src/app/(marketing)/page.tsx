@@ -2,32 +2,14 @@
 
 export const dynamic = 'force-dynamic';
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { ChevronDown, ArrowUpRight, Star, Sparkles, Lightbulb, Network, Palette, Globe, Image, Wand2, BarChart3 } from "lucide-react";
-import Navbar from "@/components/marketing/navbar";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Footerdemo } from "@/components/ui/footer-section";
-import { TextGradientScroll } from "@/components/ui/text-gradient-scroll";
-import { LogoCloud } from "@/components/logo-cloud-3";
+import { ArrowUpRight, Star, Check } from "lucide-react";
+import Image from "next/image";
 
 const HomePage = () => {
     const router = useRouter();
     const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-    // Composant de bouton avec le style moderne
-    const ModernButton = ({ children, onClick, className = "" }: { children: React.ReactNode; onClick?: () => void; className?: string }) => (
-        <button
-            onClick={onClick}
-            className={`group flex items-center gap-3 bg-black text-white px-6 py-4 rounded-full font-normal text-base hover:bg-gray-900 transition-all duration-300 shadow-lg ${className}`}
-        >
-            <span className="transition-transform duration-300 ease-linear group-hover:translate-x-2">{children}</span>
-            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center transition-transform duration-300 ease-linear group-hover:-translate-x-2">
-                <ArrowUpRight className="w-4 h-4 text-black" />
-            </div>
-        </button>
-    );
 
     const faqs = [
         {
@@ -57,123 +39,142 @@ const HomePage = () => {
     ];
 
     return (
-        <div className="min-h-screen w-full relative">
-            {/* Bouton de connexion en haut à droite */}
-            <button
-                onClick={() => router.push("/login")}
-                className="group fixed top-6 right-6 z-50 flex items-center gap-3 bg-black text-white px-6 py-4 rounded-full font-normal text-base hover:bg-gray-900 transition-all duration-300 shadow-lg"
-            >
-                <span className="transition-transform duration-300 ease-linear group-hover:translate-x-2">Let's Collaborate</span>
-                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center transition-transform duration-300 ease-linear group-hover:-translate-x-2">
-                    <ArrowUpRight className="w-4 h-4 text-black" />
-                </div>
-            </button>
+        <div className="min-h-screen w-full relative bg-white">
+            {/* Gradient Background */}
+            <div className="fixed inset-0 z-0 bg-gradient-to-br from-yellow-50 via-white to-purple-50 opacity-50" />
 
             {/* Navigation */}
-            <Navbar />
-
-            {/* Logo Cloud Section */}
-            <section className="w-full py-8 bg-white">
-                <LogoCloud
-                    logos={[
-                        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", alt: "React" },
-                        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg", alt: "Next.js" },
-                        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", alt: "TypeScript" },
-                        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg", alt: "Tailwind CSS" },
-                        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg", alt: "Vercel" },
-                        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", alt: "Node.js" },
-                        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", alt: "Python" },
-                        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg", alt: "Docker" },
-                        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aws/aws-original.svg", alt: "AWS" },
-                        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg", alt: "GitHub" },
-                    ]}
-                />
-            </section>
+            <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200">
+                <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+                    <div className="text-2xl font-bold">Awake</div>
+                    <div className="hidden md:flex items-center gap-8">
+                        <a href="#home" className="text-gray-700 hover:text-gray-900">Home</a>
+                        <a href="#about-us" className="text-gray-700 hover:text-gray-900">About us</a>
+                        <a href="#services" className="text-gray-700 hover:text-gray-900">Services</a>
+                        <a href="#work" className="text-gray-700 hover:text-gray-900">Work</a>
+                        <a href="#team" className="text-gray-700 hover:text-gray-900">Team</a>
+                        <a href="#pricing" className="text-gray-700 hover:text-gray-900">Pricing</a>
+                        <a href="#award" className="text-gray-700 hover:text-gray-900">Awards</a>
+                    </div>
+                    <button
+                        onClick={() => router.push("/login")}
+                        className="flex items-center gap-2 bg-black text-white px-6 py-2 rounded-full hover:bg-gray-900 transition-colors"
+                    >
+                        <span>Let's Collaborate</span>
+                        <ArrowUpRight className="w-4 h-4" />
+                    </button>
+                </div>
+            </nav>
 
             {/* Hero Section */}
-            <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 px-6">
+            <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 px-6 z-10">
                 <div className="max-w-7xl mx-auto text-center">
-                    <div className="text-6xl md:text-8xl font-normal text-gray-900 mb-6 leading-tight">
-                        <TextGradientScroll text="Building bold brands with thoughtful design" className="justify-center" />
-                    </div>
-                    <div className="text-xl text-gray-700 max-w-2xl mx-auto mb-8">
-                        <TextGradientScroll text="At Awake, we help small startups tackle the world's biggest challenges with tailored solutions, guiding you from strategy to success in a competitive market." className="justify-center" type="word" />
-                    </div>
-                    <div className="flex items-center justify-center gap-4 mb-12">
-                        <ModernButton onClick={() => router.push("/login")}>
-                            Get Started
-                        </ModernButton>
-                        <ModernButton onClick={() => {}}>
-                            Watch Video
-                        </ModernButton>
+                    <h1 className="text-6xl md:text-8xl font-normal text-gray-900 mb-6 leading-tight">
+                        Building bold brands with <span className="italic">thoughtful design</span>
+                    </h1>
+                    <p className="text-xl text-gray-700 max-w-2xl mx-auto mb-8">
+                        At Awake, we help small startups tackle the world's biggest challenges with tailored solutions, guiding you from strategy to success in a competitive market.
+                    </p>
+                    <div className="flex items-center justify-center gap-8">
+                        <button
+                            onClick={() => router.push("/login")}
+                            className="flex items-center gap-2 bg-black text-white px-8 py-4 rounded-full hover:bg-gray-900 transition-colors"
+                        >
+                            <span>Get Started</span>
+                            <ArrowUpRight className="w-4 h-4" />
+                        </button>
+                        <div className="flex items-center gap-4">
+                            <div className="flex -space-x-2">
+                                {[1, 2, 3, 4].map((i) => (
+                                    <div key={i} className="w-10 h-10 rounded-full bg-gray-300 border-2 border-white" />
+                                ))}
+                            </div>
+                            <div className="flex items-center gap-1">
+                                {[1, 2, 3, 4].map((i) => (
+                                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                                ))}
+                                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" style={{ clipPath: 'inset(0 50% 0 0)' }} />
+                            </div>
+                            <p className="text-sm text-gray-600">Trusted by 200+ clients</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* Stats Section */}
-            <section className="py-20 px-6">
+            {/* Logo Cloud Section */}
+            <section className="w-full py-12 bg-white z-10 relative">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="text-center mb-8">
+                        <p className="text-gray-600">Loved by 100,000+ big and small brands around the world</p>
+                    </div>
+                    <div className="flex items-center justify-center gap-12 flex-wrap opacity-60">
+                        {[1, 2, 3, 4, 5].map((i) => (
+                            <div key={i} className="text-2xl font-bold text-gray-400">Brand {i}</div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* About Us Section */}
+            <section id="about-us" className="py-20 px-6 bg-white z-10 relative">
                 <div className="max-w-7xl mx-auto">
-                    <div className="flex flex-wrap justify-center gap-4 mb-16">
-                        <div className="px-6 py-3 bg-black rounded-full text-white font-normal flex items-center gap-2">
-                            <Sparkles className="w-5 h-5" />
-                            <span>Creativity</span>
-                        </div>
-                        <div className="px-6 py-3 bg-black rounded-full text-white font-normal flex items-center gap-2">
-                            <Lightbulb className="w-5 h-5" />
-                            <span>Innovation</span>
-                        </div>
-                        <div className="px-6 py-3 bg-black rounded-full text-white font-normal flex items-center gap-2">
-                            <Network className="w-5 h-5" />
-                            <span>Strategy</span>
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl md:text-6xl font-normal text-gray-900 mb-8">
+                            Crafting exceptional, well experienced & technology driven strategies to drive impactful results with
+                        </h2>
+                        <div className="flex items-center justify-center gap-6">
+                            <div className="flex items-center gap-2 px-4 py-2 bg-purple-100 rounded-full">
+                                <span className="text-2xl">✨</span>
+                                <span className="text-gray-900">Creativity</span>
+                            </div>
+                            <div className="flex items-center gap-2 px-4 py-2 bg-blue-100 rounded-full">
+                                <span className="text-2xl">💡</span>
+                                <span className="text-gray-900">Innovation</span>
+                            </div>
+                            <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full">
+                                <span className="text-2xl">🎯</span>
+                                <span className="text-gray-900">Strategy</span>
+                            </div>
                         </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div className="text-center">
-                            <div className="text-6xl font-normal text-gray-900 mb-2">
-                                <span className="text-4xl">+</span>40
-                            </div>
-                            <div className="text-gray-600">Total Projects Completed</div>
+                            <div className="text-6xl font-normal text-gray-900 mb-2">+40</div>
+                            <p className="text-gray-600">Total Projects Completed</p>
                         </div>
                         <div className="text-center">
-                            <div className="text-6xl font-normal text-gray-900 mb-2">
-                                <span className="text-4xl">+</span>15
-                            </div>
-                            <div className="text-gray-600">Years of Experience</div>
+                            <div className="text-6xl font-normal text-gray-900 mb-2">+15</div>
+                            <p className="text-gray-600">Years of Experience</p>
                         </div>
                         <div className="text-center">
-                            <div className="text-6xl font-normal text-gray-900 mb-2">
-                                <span className="text-4xl">+</span>12
-                            </div>
-                            <div className="text-gray-600">Design Awards</div>
+                            <div className="text-6xl font-normal text-gray-900 mb-2">+12</div>
+                            <p className="text-gray-600">Design Awards</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* Services Section */}
-            <section id="services" className="py-20 px-6">
+            <section id="services" className="py-20 px-6 bg-white z-10 relative">
                 <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
-                        <Card className="p-6 bg-purple-100 border-0 rounded-2xl">
-                            <Palette className="w-8 h-8 text-purple-600 mb-4" />
-                            <h3 className="text-xl font-normal text-gray-900">Brand Strategy</h3>
-                        </Card>
-                        <Card className="p-6 bg-pink-100 border-0 rounded-2xl">
-                            <Globe className="w-8 h-8 text-pink-600 mb-4" />
-                            <h3 className="text-xl font-normal text-gray-900">Web Development</h3>
-                        </Card>
-                        <Card className="p-6 bg-blue-100 border-0 rounded-2xl">
-                            <Image className="w-8 h-8 text-blue-600 mb-4" />
-                            <h3 className="text-xl font-normal text-gray-900">Digital Marketing</h3>
-                        </Card>
-                        <Card className="p-6 bg-orange-100 border-0 rounded-2xl">
-                            <Wand2 className="w-8 h-8 text-orange-600 mb-4" />
-                            <h3 className="text-xl font-normal text-gray-900">UI/UX Designing</h3>
-                        </Card>
-                        <Card className="p-6 bg-green-100 border-0 rounded-2xl">
-                            <BarChart3 className="w-8 h-8 text-green-600 mb-4" />
-                            <h3 className="text-xl font-normal text-gray-900">Analytics & Reporting</h3>
-                        </Card>
+                    <h2 className="text-4xl md:text-6xl font-normal text-gray-900 mb-16 text-center">
+                        Where innovation meets <span className="italic">aesthetics</span>
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-16">
+                        {[
+                            { name: "Brand Strategy", color: "bg-purple-100" },
+                            { name: "Web Development", color: "bg-pink-100" },
+                            { name: "Digital Marketing", color: "bg-blue-100" },
+                            { name: "UI/UX Designing", color: "bg-orange-100" },
+                            { name: "Analytics & Reporting", color: "bg-green-100" },
+                        ].map((service, i) => (
+                            <div key={i} className={`${service.color} p-6 rounded-2xl`}>
+                                <div className="w-10 h-10 bg-white rounded-lg mb-4 flex items-center justify-center">
+                                    <span className="text-2xl">🎨</span>
+                                </div>
+                                <p className="font-normal text-gray-900">{service.name}</p>
+                            </div>
+                        ))}
                     </div>
                     <div className="bg-gray-900 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
                         <div className="text-white text-2xl font-normal">
@@ -183,281 +184,309 @@ const HomePage = () => {
                         <div className="flex flex-col gap-3">
                             <button
                                 onClick={() => router.push("/login")}
-                                className="group flex items-center gap-2 bg-white text-gray-900 px-6 py-3 rounded-full font-normal hover:bg-gray-100 transition-all duration-300"
+                                className="flex items-center gap-2 bg-white text-gray-900 px-6 py-3 rounded-full hover:bg-gray-100 transition-colors"
                             >
-                                <span className="transition-transform duration-300 ease-linear group-hover:translate-x-2">Let's Collaborate</span>
-                                <ArrowUpRight className="w-4 h-4 transition-transform duration-300 ease-linear group-hover:-translate-x-2" />
+                                <span>Let's Collaborate</span>
+                                <ArrowUpRight className="w-4 h-4" />
                             </button>
-                            <button
-                                onClick={() => {}}
-                                className="group flex items-center gap-2 bg-transparent border border-white text-white px-6 py-3 rounded-full font-normal hover:bg-white/10 transition-all duration-300"
-                            >
-                                <span className="transition-transform duration-300 ease-linear group-hover:translate-x-2">View Portfolio</span>
-                                <ArrowUpRight className="w-4 h-4 transition-transform duration-300 ease-linear group-hover:-translate-x-2" />
+                            <button className="flex items-center gap-2 bg-transparent border border-white text-white px-6 py-3 rounded-full hover:bg-white/10 transition-colors">
+                                <span>View Portfolio</span>
+                                <ArrowUpRight className="w-4 h-4" />
                             </button>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Portfolio Section */}
-            <section id="work" className="py-20 px-6">
+            {/* Work Section */}
+            <section id="work" className="py-20 px-6 bg-white z-10 relative">
                 <div className="max-w-7xl mx-auto">
-                    <div className="text-4xl md:text-5xl font-normal text-gray-900 text-center mb-16">
-                        <TextGradientScroll text="How we transformed a small business's online presence" className="justify-center" />
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <Card className="overflow-hidden border-0 shadow-lg rounded-2xl">
-                            <div className="h-64 bg-gradient-to-br from-blue-400 to-purple-500 relative">
-                                <div className="absolute bottom-4 left-4 text-white">
-                                    <div className="text-2xl font-normal mb-2">Genome</div>
-                                    <div className="flex gap-2">
-                                        <span className="px-3 py-1 bg-white/20 rounded-full text-sm">Brand Identity</span>
-                                        <span className="px-3 py-1 bg-white/20 rounded-full text-sm">UX Research</span>
-                                    </div>
+                    <h2 className="text-4xl md:text-6xl font-normal text-gray-900 mb-16 text-center">
+                        How we transformed a small business's <span className="italic">online presence</span>
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {[
+                            { name: "FlowBank", tags: ["UX Research", "Interface Design"] },
+                            { name: "Academy.co", tags: ["Product Design", "Interaction Design"] },
+                            { name: "Genome", tags: ["Brand identity design", "UX Research"] },
+                            { name: "Hotto", tags: ["Visual Story telling", "Web & Mobile Design"] },
+                        ].map((project, i) => (
+                            <div key={i} className="bg-gray-100 rounded-2xl p-6">
+                                <div className="w-full h-64 bg-gray-300 rounded-xl mb-4" />
+                                <h3 className="text-xl font-normal text-gray-900 mb-4">{project.name}</h3>
+                                <div className="flex gap-2">
+                                    {project.tags.map((tag, j) => (
+                                        <span key={j} className="px-3 py-1 bg-white rounded-full text-sm text-gray-700">
+                                            {tag}
+                                        </span>
+                                    ))}
                                 </div>
                             </div>
-                        </Card>
-                        <Card className="overflow-hidden border-0 shadow-lg rounded-2xl">
-                            <div className="h-64 bg-gradient-to-br from-pink-400 to-orange-500 relative">
-                                <div className="absolute bottom-4 left-4 text-white">
-                                    <div className="text-2xl font-normal mb-2">Academy.co</div>
-                                    <div className="flex gap-2">
-                                        <span className="px-3 py-1 bg-white/20 rounded-full text-sm">Product Design</span>
-                                        <span className="px-3 py-1 bg-white/20 rounded-full text-sm">Interaction Design</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </Card>
-                        <Card className="overflow-hidden border-0 shadow-lg rounded-2xl">
-                            <div className="h-64 bg-gradient-to-br from-green-400 to-blue-500 relative">
-                                <div className="absolute bottom-4 left-4 text-white">
-                                    <div className="text-2xl font-normal mb-2">FlowBank</div>
-                                    <div className="flex gap-2">
-                                        <span className="px-3 py-1 bg-white/20 rounded-full text-sm">UX Research</span>
-                                        <span className="px-3 py-1 bg-white/20 rounded-full text-sm">Interface Design</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </Card>
-                        <Card className="overflow-hidden border-0 shadow-lg rounded-2xl">
-                            <div className="h-64 bg-gradient-to-br from-yellow-400 to-red-500 relative">
-                                <div className="absolute bottom-4 left-4 text-white">
-                                    <div className="text-2xl font-normal mb-2">Hotto</div>
-                                    <div className="flex gap-2">
-                                        <span className="px-3 py-1 bg-white/20 rounded-full text-sm">Visual Storytelling</span>
-                                        <span className="px-3 py-1 bg-white/20 rounded-full text-sm">Web & Mobile Design</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </Card>
+                        ))}
                     </div>
                 </div>
             </section>
 
             {/* Team Section */}
-            <section id="team" className="py-20 px-6">
+            <section id="team" className="py-20 px-6 bg-white z-10 relative">
                 <div className="max-w-7xl mx-auto">
-                    <div className="text-4xl md:text-5xl font-normal text-gray-900 text-center mb-16">
-                        <TextGradientScroll text="Meet the creative minds behind our success" className="justify-center" />
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <h2 className="text-4xl md:text-6xl font-normal text-gray-900 mb-16 text-center">
+                        Meet the creative minds behind <span className="italic">our success</span>
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {[
                             { name: "Logan Dang", role: "Wordpress Developer" },
                             { name: "Ana Belić", role: "Social Media Specialist" },
                             { name: "Brian Hanley", role: "Product Designer" },
-                            { name: "Darko Stanković", role: "UI Designer" }
+                            { name: "Darko Stanković", role: "UI Designer" },
                         ].map((member, i) => (
-                            <Card key={i} className="bg-white border border-gray-200 rounded-2xl p-6 text-center">
-                                <div className="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4"></div>
-                                <h3 className="text-xl font-normal text-gray-900 mb-1">{member.name}</h3>
-                                <p className="text-gray-600">{member.role}</p>
-                                <div className="flex justify-center gap-2 mt-4">
-                                    <div className="w-6 h-6 bg-gray-400 rounded"></div>
-                                    <div className="w-6 h-6 bg-gray-400 rounded"></div>
+                            <div key={i} className="bg-gray-100 rounded-2xl overflow-hidden">
+                                <div className="w-full h-64 bg-gray-300" />
+                                <div className="p-6">
+                                    <h3 className="text-xl font-normal text-gray-900 mb-1">{member.name}</h3>
+                                    <p className="text-gray-600 mb-4">{member.role}</p>
+                                    <div className="flex gap-3">
+                                        <div className="w-8 h-8 bg-gray-300 rounded-full" />
+                                        <div className="w-8 h-8 bg-gray-300 rounded-full" />
+                                    </div>
                                 </div>
-                            </Card>
+                            </div>
                         ))}
                     </div>
                 </div>
             </section>
 
             {/* Testimonials Section */}
-            <section className="py-20 px-6">
+            <section className="py-20 px-6 bg-white z-10 relative">
                 <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <Card className="bg-black text-white border-0 p-8 rounded-2xl">
-                            <div className="flex gap-1 mb-4">
-                                {[1, 2, 3, 4, 5].map((i) => (
-                                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                                ))}
-                            </div>
-                            <p className="text-lg mb-6">
+                    <h2 className="text-4xl md:text-6xl font-normal text-gray-900 mb-16 text-center">
+                        What our satisfied customers are saying <span className="italic">about us</span>
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div className="bg-black text-white p-8 rounded-2xl">
+                            <p className="text-sm text-gray-400 mb-4">Customer Stories</p>
+                            <p className="text-xl mb-6">
                                 Awake's expertise transformed my vision into success with creativity, precision, and a deep understanding of my goals.
                             </p>
                             <div>
-                                <div className="font-normal">Sarah Mitchell</div>
-                                <div className="text-gray-400">Founder of Chipsland</div>
+                                <p className="font-normal">Sarah Mitchell</p>
+                                <p className="text-gray-400">Founder of Chipsland</p>
                             </div>
-                        </Card>
-                        <Card className="bg-white border border-gray-200 p-8 text-center rounded-2xl">
-                            <div className="text-7xl font-normal text-gray-900 mb-4">91%</div>
-                            <p className="text-gray-700 text-lg">clients recommend our design services.</p>
-                        </Card>
-                        <Card className="bg-black text-white border-0 p-8 rounded-2xl">
-                            <p className="text-lg">
-                                Their creativity and attention to detail transformed our brand completely!
-                            </p>
-                        </Card>
-                        <Card className="bg-white border border-gray-200 p-8 rounded-2xl">
-                            <p className="text-lg mb-6 text-gray-700">
+                        </div>
+                        <div className="bg-gray-100 p-8 rounded-2xl">
+                            <p className="text-sm text-gray-600 mb-4">Facts & Numbers</p>
+                            <p className="text-6xl font-normal text-gray-900 mb-2">91%</p>
+                            <p className="text-gray-600">clients recommend our design services.</p>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="bg-gray-100 p-8 rounded-2xl">
+                            <p className="text-sm text-gray-600 mb-4">Customer Stories</p>
+                            <p className="text-xl mb-6">Their creativity and attention to detail transformed our brand completely!</p>
+                            <div className="w-full h-48 bg-gray-300 rounded-xl" />
+                        </div>
+                        <div className="bg-white border border-gray-200 p-8 rounded-2xl">
+                            <p className="text-sm text-gray-600 mb-4">Customer Stories</p>
+                            <h3 className="text-2xl font-normal text-gray-900 mb-6">
                                 "Awake Design Agency brought our ideas to life with exceptional creativity and precision, exceeding expectations."
-                            </p>
+                            </h3>
                             <div>
-                                <div className="font-normal text-gray-900">Sarah Mitchell</div>
-                                <div className="text-gray-600">Marketing Head at TalentConnect</div>
+                                <p className="font-normal text-gray-900">Sarah Mitchell</p>
+                                <p className="text-gray-600">Marketing Head at TalentConnect</p>
                             </div>
-                        </Card>
+                        </div>
                     </div>
                 </div>
             </section>
 
             {/* Pricing Section */}
-            <section id="pricing" className="py-20 px-6">
+            <section id="pricing" className="py-20 px-6 bg-white z-10 relative">
                 <div className="max-w-7xl mx-auto">
-                    <div className="text-4xl md:text-5xl font-normal text-gray-900 text-center mb-4">
-                        <TextGradientScroll text="Pick the plan that fits your start-up" className="justify-center" />
-                    </div>
-                    <div className="text-center text-gray-600 mb-12">
-                        <TextGradientScroll text="Starting at $2,500/month • Cancel anytime • No hidden fees" className="justify-center" type="word" />
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                        <Card className="bg-white border border-gray-200 rounded-2xl p-8">
-                            <h3 className="text-2xl font-normal text-gray-900 mb-2">Starter</h3>
+                    <h2 className="text-4xl md:text-6xl font-normal text-gray-900 mb-16 text-center">
+                        Pick the plan that fits your <span className="italic">start-up</span>
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="bg-white border border-gray-200 rounded-2xl p-8">
+                            <div className="mb-6">
+                                <span className="px-4 py-2 bg-gray-100 rounded-full text-sm text-gray-900">Starter</span>
+                            </div>
                             <p className="text-gray-600 mb-6">For companies who need design support. One request at a time</p>
-                            <div className="text-5xl font-normal text-gray-900 mb-2">
-                                $2,500<span className="text-2xl text-gray-600 font-normal">/month</span>
+                            <h3 className="text-5xl font-normal text-gray-900 mb-8">
+                                $2500<span className="text-2xl text-gray-600">/month</span>
+                            </h3>
+                            <button
+                                onClick={() => router.push("/login")}
+                                className="w-full flex items-center justify-center gap-2 bg-black text-white px-6 py-3 rounded-full hover:bg-gray-900 transition-colors mb-8"
+                            >
+                                <span>Let's Collaborate</span>
+                                <ArrowUpRight className="w-4 h-4" />
+                            </button>
+                            <div>
+                                <p className="text-sm text-gray-600 mb-4">Features</p>
+                                <ul className="space-y-3">
+                                    {["Design Updates Every 2 Days", "Mid-level Designer", "SEO optimization", "Monthly analytics", "2x Calls Per Month", "License free assets"].map((feature, i) => (
+                                        <li key={i} className="flex items-center gap-3">
+                                            <Check className="w-5 h-5 text-gray-900" />
+                                            <span className="text-gray-700">{feature}</span>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
-                            <p className="text-sm text-gray-500 mb-8">Billed monthly • Save 20% with annual billing</p>
-                            <ul className="space-y-3 mb-8">
-                                <li className="flex items-center gap-2">
-                                    <span className="w-2 h-2 bg-gray-900 rounded-full"></span>
-                                    <span className="text-gray-900">Design Updates Every 2 Days</span>
-                                </li>
-                                <li className="flex items-center gap-2">
-                                    <span className="w-2 h-2 bg-gray-900 rounded-full"></span>
-                                    <span className="text-gray-900">Mid-level Designer</span>
-                                </li>
-                                <li className="flex items-center gap-2">
-                                    <span className="w-2 h-2 bg-gray-900 rounded-full"></span>
-                                    <span className="text-gray-900">SEO optimization</span>
-                                </li>
-                                <li className="flex items-center gap-2">
-                                    <span className="w-2 h-2 bg-gray-900 rounded-full"></span>
-                                    <span className="text-gray-900">Monthly analytics</span>
-                                </li>
-                                <li className="flex items-center gap-2">
-                                    <span className="w-2 h-2 bg-gray-900 rounded-full"></span>
-                                    <span className="text-gray-900">2x Calls Per Month</span>
-                                </li>
-                                <li className="flex items-center gap-2">
-                                    <span className="w-2 h-2 bg-gray-900 rounded-full"></span>
-                                    <span className="text-gray-900">License free assets</span>
-                                </li>
-                            </ul>
-                            <ModernButton onClick={() => router.push("/login")} className="w-full">
-                                Let's Collaborate
-                            </ModernButton>
-                        </Card>
-                        <Card className="bg-white border border-gray-200 rounded-2xl p-8">
-                            <h3 className="text-2xl font-normal text-gray-900 mb-2">Pro</h3>
-                            <p className="text-gray-600 mb-6">2x the speed. Great for an MVP, Web App or complex problem</p>
-                            <div className="text-5xl font-normal text-gray-900 mb-2">
-                                $3,500<span className="text-2xl text-gray-600 font-normal">/month</span>
+                        </div>
+                        <div className="bg-gray-900 text-white rounded-2xl p-8">
+                            <div className="mb-6">
+                                <span className="px-4 py-2 bg-white/20 rounded-full text-sm">Pro</span>
                             </div>
-                            <p className="text-sm text-gray-500 mb-8">Billed monthly • Save 20% with annual billing</p>
-                            <ul className="space-y-3 mb-8">
-                                <li className="flex items-center gap-2">
-                                    <span className="w-2 h-2 bg-gray-900 rounded-full"></span>
-                                    <span className="text-gray-900">Design Updates Daily</span>
-                                </li>
-                                <li className="flex items-center gap-2">
-                                    <span className="w-2 h-2 bg-gray-900 rounded-full"></span>
-                                    <span className="text-gray-900">Senior-level Designer</span>
-                                </li>
-                                <li className="flex items-center gap-2">
-                                    <span className="w-2 h-2 bg-gray-900 rounded-full"></span>
-                                    <span className="text-gray-900">AI Advisory Framework</span>
-                                </li>
-                                <li className="flex items-center gap-2">
-                                    <span className="w-2 h-2 bg-gray-900 rounded-full"></span>
-                                    <span className="text-gray-900">Full-service Creative Team</span>
-                                </li>
-                                <li className="flex items-center gap-2">
-                                    <span className="w-2 h-2 bg-gray-900 rounded-full"></span>
-                                    <span className="text-gray-900">4x Calls Per Month</span>
-                                </li>
-                                <li className="flex items-center gap-2">
-                                    <span className="w-2 h-2 bg-gray-900 rounded-full"></span>
-                                    <span className="text-gray-900">License free assets</span>
-                                </li>
-                            </ul>
-                            <ModernButton onClick={() => router.push("/login")} className="w-full">
-                                Let's Collaborate
-                            </ModernButton>
-                        </Card>
+                            <p className="text-gray-300 mb-6">2x the speed. Great for an MVP, Web App or complex problem</p>
+                            <h3 className="text-5xl font-normal mb-8">
+                                $3500<span className="text-2xl text-gray-400">/month</span>
+                            </h3>
+                            <button
+                                onClick={() => router.push("/login")}
+                                className="w-full flex items-center justify-center gap-2 bg-white text-gray-900 px-6 py-3 rounded-full hover:bg-gray-100 transition-colors mb-8"
+                            >
+                                <span>Let's Collaborate</span>
+                                <ArrowUpRight className="w-4 h-4" />
+                            </button>
+                            <div>
+                                <p className="text-sm text-gray-300 mb-4">Features</p>
+                                <ul className="space-y-3">
+                                    {["Design Updates Daily", "Senior-level Designer", "AI Advisory Framework", "Full-service Creative Team", "4x Calls Per Month", "License free assets"].map((feature, i) => (
+                                        <li key={i} className="flex items-center gap-3">
+                                            <Check className="w-5 h-5" />
+                                            <span>{feature}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
             {/* FAQ Section */}
-            <section className="py-20 px-6">
+            <section className="py-20 px-6 bg-white z-10 relative">
                 <div className="max-w-4xl mx-auto">
-                    <div className="text-4xl md:text-5xl font-normal text-gray-900 text-center mb-16">
-                        <TextGradientScroll text="Got questions? We've got answers" className="justify-center" />
-                    </div>
+                    <h2 className="text-4xl md:text-6xl font-normal text-gray-900 mb-16 text-center">
+                        Got questions?<br />We've got <span className="italic">answers</span>
+                    </h2>
                     <div className="space-y-4">
-                        {faqs.map((faq, index) => (
-                            <Card key={index} className="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+                        {faqs.map((faq, i) => (
+                            <div key={i} className="border border-gray-200 rounded-xl overflow-hidden">
                                 <button
-                                    className="w-full p-6 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
-                                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                                    className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
                                 >
                                     <span className="text-lg font-normal text-gray-900">{faq.question}</span>
-                                    <ChevronDown className={`w-5 h-5 text-gray-600 transition-transform ${openFaq === index ? 'rotate-180' : ''}`} />
+                                    <ArrowUpRight
+                                        className={`w-5 h-5 text-gray-600 transition-transform ${openFaq === i ? 'rotate-90' : ''}`}
+                                    />
                                 </button>
-                                {openFaq === index && (
-                                    <div className="px-6 pb-6 text-gray-600">
+                                {openFaq === i && (
+                                    <div className="p-6 pt-0 text-gray-600">
                                         {faq.answer}
                                     </div>
                                 )}
-                            </Card>
+                            </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Final CTA - Section avant footer avec bords arrondis et pleine largeur */}
-            <section className="py-20 px-6">
+            {/* Awards Section */}
+            <section id="award" className="py-20 px-6 bg-white z-10 relative">
                 <div className="max-w-7xl mx-auto">
-                    <div className="bg-white rounded-3xl p-12 md:p-16 text-center border border-gray-200">
-                        <div className="text-4xl md:text-5xl font-normal text-gray-900 mb-6">
-                            <TextGradientScroll text="Innovative Solutions for bold brands" className="justify-center" />
-                        </div>
-                        <div className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
-                            <TextGradientScroll text="Looking to elevate your brand? We craft immersive experiences that captivate, engage, and make your business unforgettable in every interaction." className="justify-center" type="word" />
-                        </div>
-                        <ModernButton onClick={() => router.push("/login")} className="px-8 py-6 text-lg">
-                            Let's craft together
-                        </ModernButton>
+                    <h2 className="text-4xl md:text-6xl font-normal text-gray-900 mb-16 text-center">
+                        Accolades and achievements celebration our <span className="italic">design excellence</span>
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {[
+                            { title: "Webflow Awards", description: "Celebrated for cutting-edge interaction design and seamless user experiences.", year: "2025" },
+                            { title: "Dribbble Awards", description: "Recognized for creative excellence and innovative design solutions", year: "2024" },
+                            { title: "awwwards Awards", description: "Honored with the Best Website Design for creativity, usability, and innovation.", year: "2023" },
+                        ].map((award, i) => (
+                            <div key={i} className="bg-gray-100 p-8 rounded-2xl">
+                                <div className="w-10 h-10 bg-gray-300 rounded-lg mb-4" />
+                                <h3 className="text-xl font-normal text-gray-900 mb-2">{award.title}</h3>
+                                <p className="text-gray-600 mb-4">{award.description}</p>
+                                <p className="text-gray-900 font-normal">{award.year}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
 
+            {/* CTA Section */}
+            <section className="py-20 px-6 bg-white z-10 relative">
+                <div className="max-w-4xl mx-auto text-center">
+                    <h3 className="text-4xl md:text-6xl font-normal text-gray-900 mb-6">
+                        Innovative Solutions for <span className="italic">bold brands</span>
+                    </h3>
+                    <p className="text-xl text-gray-600 mb-8">
+                        Looking to elevate your brand? We craft immersive experiences that captivate, engage, and make your business unforgettable in every interaction.
+                    </p>
+                    <button
+                        onClick={() => router.push("/login")}
+                        className="flex items-center gap-2 bg-black text-white px-8 py-4 rounded-full hover:bg-gray-900 transition-colors mx-auto"
+                    >
+                        <span>Let's craft together</span>
+                        <ArrowUpRight className="w-4 h-4" />
+                    </button>
+                </div>
+            </section>
+
             {/* Footer */}
-            <Footerdemo />
+            <footer className="bg-white border-t border-gray-200 py-12 px-6 z-10 relative">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                        <div>
+                            <div className="text-2xl font-bold mb-4">Awake</div>
+                            <p className="text-gray-600 mb-4">
+                                Empowering businesses with innovative solutions. Let's create something amazing together.
+                            </p>
+                            <div className="flex gap-4">
+                                {[1, 2, 3, 4].map((i) => (
+                                    <div key={i} className="w-8 h-8 bg-gray-200 rounded-full" />
+                                ))}
+                            </div>
+                        </div>
+                        <div>
+                            <h4 className="font-normal text-gray-900 mb-4">Sitemap</h4>
+                            <ul className="space-y-2">
+                                <li><a href="#about-us" className="text-gray-600 hover:text-gray-900">About us</a></li>
+                                <li><a href="#work" className="text-gray-600 hover:text-gray-900">Work</a></li>
+                                <li><a href="#services" className="text-gray-600 hover:text-gray-900">Services</a></li>
+                                <li><a href="#pricing" className="text-gray-600 hover:text-gray-900">Pricing</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 className="font-normal text-gray-900 mb-4">Other Pages</h4>
+                            <ul className="space-y-2">
+                                <li><a href="/contact" className="text-gray-600 hover:text-gray-900">Contact Us</a></li>
+                                <li><a href="/404" className="text-gray-600 hover:text-gray-900">Error 404</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 className="font-normal text-gray-900 mb-4">Contact Details</h4>
+                            <ul className="space-y-2 text-gray-600">
+                                <li>81 Rivington Street London EC2A 3AY</li>
+                                <li><a href="mailto:hello@awake.agency" className="hover:text-gray-900">hello@awake.agency</a></li>
+                                <li><a href="tel:01051923556" className="hover:text-gray-900">0105 192 3556</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                        <p className="text-gray-600 text-sm">©2025 Awake. All Rights Reserved.</p>
+                        <div className="flex gap-6 text-sm">
+                            <a href="/style-guide" className="text-gray-600 hover:text-gray-900">Style Guide</a>
+                            <a href="/licenses" className="text-gray-600 hover:text-gray-900">Licenses</a>
+                            <a href="/changelog" className="text-gray-600 hover:text-gray-900">Changelog</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
-    )
+    );
 };
 
-export default HomePage
+export default HomePage;

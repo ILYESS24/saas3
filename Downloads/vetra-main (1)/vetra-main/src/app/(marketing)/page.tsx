@@ -2,7 +2,7 @@
 
 export const dynamic = 'force-dynamic';
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowUpRight, Star, Check, Sparkles, Lightbulb, Target, Palette, Monitor, Megaphone, PenTool, BarChart3 } from "lucide-react";
 import { LogoCloud } from "@/components/logo-cloud-3";
@@ -79,10 +79,8 @@ const HomePage = () => {
         { label: "Awards", href: "#award" },
     ];
 
-    const pageRef = useRef<HTMLDivElement>(null);
-
     return (
-        <div ref={pageRef} className="min-h-screen w-full relative bg-white">
+        <div className="min-h-screen w-full relative bg-white">
             {/* Gradient Background */}
             <div className="fixed inset-0 z-0 bg-gradient-to-br from-yellow-50 via-white to-purple-50 opacity-50" />
 
@@ -127,7 +125,7 @@ const HomePage = () => {
             </div>
 
             {/* SVG Follow Scroll Effect */}
-            <Skiper19 containerRef={pageRef} />
+            <Skiper19 />
 
             {/* Hero Section */}
             <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 px-6 z-10">

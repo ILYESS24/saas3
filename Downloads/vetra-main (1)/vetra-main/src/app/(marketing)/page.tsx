@@ -349,21 +349,58 @@ const HomePage = () => {
             {/* Testimonials Section */}
             <section className="py-20 px-6 bg-transparent z-10 relative">
                 <div className="max-w-6xl mx-auto">
-                    <motion.div className="grid gap-6 md:grid-cols-[minmax(0,2fr)_1fr] mb-14" {...fadeInUp}>
+                    {/* Top Section */}
+                    <motion.div className="grid gap-6 md:grid-cols-[minmax(0,2fr)_1fr] mb-6" {...fadeInUp}>
                         <motion.div 
-                            className="rounded-[32px] overflow-hidden bg-black text-white p-10 flex flex-col justify-end min-h-[360px]"
+                            className="rounded-[32px] overflow-hidden bg-[#181818] text-white p-10 flex flex-col justify-end min-h-[300px] relative"
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ duration: 0.6 }}
                         >
-                            <p className="text-xs uppercase tracking-[0.2em] text-gray-300 mb-4">Customer Stories</p>
-                            <p className="text-2xl md:text-3xl font-normal leading-snug mb-8">
-                                Awake's expertise transformed my vision into success with usability, precision, and a deep understanding of my goals.
-                            </p>
-                            <div className="text-sm">
-                                <p className="font-normal">Sarah Mitchell</p>
-                                <p className="text-gray-400">CEO, Tech Solutions</p>
+                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black/80 z-10"></div>
+                            <div className="absolute top-10 left-10 z-20">
+                                <p className="text-xs uppercase tracking-[0.2em] text-gray-300">CUSTOMER STORIES</p>
+                            </div>
+                            <div className="relative z-20">
+                                <div className="w-32 h-32 rounded-full bg-gray-300 mb-4 overflow-hidden">
+                                    <div className="w-full h-full bg-gradient-to-br from-blue-200 to-green-200"></div>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        <motion.div 
+                            className="rounded-[32px] bg-[#F4E181] p-10 flex flex-col justify-start"
+                            initial={{ opacity: 0, x: 30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.6 }}
+                        >
+                            <p className="text-xs uppercase tracking-[0.2em] text-gray-800 mb-6">FACTS & NUMBERS</p>
+                        </motion.div>
+                    </motion.div>
+
+                    {/* Mid-Section */}
+                    <motion.div className="grid gap-6 md:grid-cols-[minmax(0,2fr)_1fr] mb-6" {...fadeInUp}>
+                        <motion.div 
+                            className="rounded-[32px] overflow-hidden bg-[#181818] text-white p-10 flex flex-col justify-end min-h-[400px] relative"
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.6 }}
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black z-10"></div>
+                            <div className="absolute inset-0 opacity-30 z-0">
+                                <div className="w-full h-full bg-gradient-to-br from-blue-400 to-purple-600"></div>
+                            </div>
+                            <div className="relative z-20">
+                                <p className="text-2xl md:text-3xl font-normal leading-snug mb-8">
+                                    Awake's expertise transformed my vision into success with creativity, precision, and a deep understanding of my goals.
+                                </p>
+                                <div className="text-sm">
+                                    <p className="font-normal">Sarah Mitchell</p>
+                                    <p className="text-gray-400">Founder of Chipsland</p>
+                                </div>
                             </div>
                         </motion.div>
 
@@ -375,17 +412,19 @@ const HomePage = () => {
                             transition={{ duration: 0.6 }}
                         >
                             <div>
-                                <p className="text-xs uppercase tracking-[0.2em] mb-6">Facts & Numbers</p>
+                                <p className="text-xs uppercase tracking-[0.2em] mb-6">FACTS & NUMBERS</p>
+                            </div>
+                            <div>
+                                <div className="text-[72px] leading-none font-light text-gray-900 mb-4">91%</div>
                                 <p className="text-sm text-gray-800">
                                     clients recommend our design services.
                                 </p>
                             </div>
-                            <div className="text-[72px] leading-none font-light">91%</div>
                         </motion.div>
-
                     </motion.div>
 
-                    <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16" {...fadeInUp}>
+                    {/* Bottom Section */}
+                    <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6" {...fadeInUp}>
                         <motion.div 
                             className="rounded-[32px] bg-[#181818] text-white p-10 flex flex-col gap-6"
                             initial={{ opacity: 0, y: 20 }}
@@ -394,10 +433,15 @@ const HomePage = () => {
                             transition={{ duration: 0.5 }}
                         >
                             <div>
-                                <p className="text-xs uppercase tracking-[0.2em] text-gray-400 mb-3">Customer Stories</p>
-                                <p className="text-2xl font-normal">Their creativity and attention to detail transformed our brand completely!</p>
+                                <p className="text-xs uppercase tracking-[0.2em] text-gray-400 mb-3">CUSTOMER STORIES</p>
+                                <p className="text-2xl font-normal mb-6">Their creativity and attention to detail transformed our brand completely!</p>
                             </div>
-                            <div className="rounded-2xl bg-white/10 border border-white/20 h-48 flex items-center justify-center">
+                            <div className="rounded-2xl bg-white/10 border border-white/20 h-48 flex items-center justify-center overflow-hidden">
+                                <div className="w-full h-full bg-gradient-to-br from-blue-200 via-yellow-200 to-orange-200 relative">
+                                    <div className="absolute bottom-4 left-4 w-16 h-16 bg-blue-400 rounded-full"></div>
+                                    <div className="absolute bottom-4 right-4 w-12 h-12 bg-yellow-300 rounded-full"></div>
+                                    <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-20 h-20 bg-orange-300 rounded-full"></div>
+                                </div>
                             </div>
                         </motion.div>
 
@@ -408,7 +452,7 @@ const HomePage = () => {
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ duration: 0.5, delay: 0.1 }}
                         >
-                            <p className="text-xs uppercase tracking-[0.2em] text-gray-500 mb-4">Customer Stories</p>
+                            <p className="text-xs uppercase tracking-[0.2em] text-gray-500 mb-4">CUSTOMER STORIES</p>
                             <p className="text-2xl text-gray-900 mb-6">
                                 "Awake Design Agency brought our ideas to life with exceptional creativity and precision, exceeding expectations."
                             </p>

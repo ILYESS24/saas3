@@ -349,37 +349,6 @@ const HomePage = () => {
             {/* Testimonials Section */}
             <section className="py-20 px-6 bg-transparent z-10 relative">
                 <div className="max-w-6xl mx-auto">
-                    {/* Top Section */}
-                    <motion.div className="grid gap-6 md:grid-cols-[minmax(0,2fr)_1fr] mb-6" {...fadeInUp}>
-                        <motion.div 
-                            className="rounded-[32px] overflow-hidden bg-[#181818] text-white p-10 flex flex-col justify-end min-h-[300px] relative"
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.6 }}
-                        >
-                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black/80 z-10"></div>
-                            <div className="absolute top-10 left-10 z-20">
-                                <p className="text-xs uppercase tracking-[0.2em] text-gray-300">CUSTOMER STORIES</p>
-                            </div>
-                            <div className="relative z-20">
-                                <div className="w-32 h-32 rounded-full bg-gray-300 mb-4 overflow-hidden">
-                                    <div className="w-full h-full bg-gradient-to-br from-blue-200 to-green-200"></div>
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        <motion.div 
-                            className="rounded-[32px] bg-[#F4E181] p-10 flex flex-col justify-start"
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.6 }}
-                        >
-                            <p className="text-xs uppercase tracking-[0.2em] text-gray-800 mb-6">FACTS & NUMBERS</p>
-                        </motion.div>
-                    </motion.div>
-
                     {/* Mid-Section */}
                     <motion.div className="grid gap-6 md:grid-cols-[minmax(0,2fr)_1fr] mb-6" {...fadeInUp}>
                         <motion.div 
@@ -720,6 +689,19 @@ const HomePage = () => {
                             <a href="/style-guide" className="text-gray-600 hover:text-gray-900">Style Guide</a>
                             <a href="/licenses" className="text-gray-600 hover:text-gray-900">Licenses</a>
                             <a href="/changelog" className="text-gray-600 hover:text-gray-900">Changelog</a>
+                        </div>
+                    </div>
+                    <div className="mt-12 pt-8 border-t border-gray-200">
+                        <div 
+                            className="text-[clamp(4rem,12vw,8rem)] font-bold text-center tracking-tight"
+                            style={{
+                                background: "linear-gradient(to right, #000000 0%, #4a4a4a 25%, #ffffff 50%, #4a4a4a 75%, #000000 100%)",
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                                backgroundClip: "text",
+                            }}
+                        >
+                            AURION
                         </div>
                     </div>
                 </div>

@@ -321,7 +321,7 @@ const HomePage = () => {
                             wordClassName="text-4xl md:text-6xl"
                         />
                     </motion.div>
-                    <div className="relative min-h-[800px]">
+                    <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {[
                             { name: "FlowBank", tags: ["UX Research", "Interface Design"], color: "bg-[#E6F0FF]" },
                             { name: "Academy.co", tags: ["Product Design", "Interaction Design"], color: "bg-[#F1E8FF]" },
@@ -329,23 +329,14 @@ const HomePage = () => {
                             { name: "Hotto", tags: ["Visual Story telling", "Web & Mobile Design"], color: "bg-[#FFEFD9]" },
                         ].map((project, i) => {
                             const pairIndex = Math.floor(i / 2);
-                            const isEven = i % 2 === 0;
-                            const offset = i * 20;
                             return (
                                 <motion.div 
                                     key={i} 
-                                    className={`bg-gray-50 rounded-2xl p-6 shadow-xl absolute ${isEven ? 'left-0 md:left-[5%]' : 'right-0 md:right-[5%]'}`}
-                                    style={{ 
-                                        top: `${offset}px`,
-                                        width: '90%',
-                                        maxWidth: '45%',
-                                        zIndex: 4 - i,
-                                        transform: `translateY(${i * 15}px)`
-                                    }}
-                                    initial={{ opacity: 0, y: 80, scale: 0.9, rotate: isEven ? -2 : 2 }}
-                                    whileInView={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
-                                    viewport={{ once: true, margin: "-150px" }}
-                                    transition={{ duration: 0.8, delay: pairIndex * 0.5, ease: "easeOut" }}
+                                    className="bg-gray-50 rounded-2xl p-6 shadow-sm"
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: "-100px" }}
+                                    transition={{ duration: 0.6, delay: pairIndex * 0.3 }}
                                 >
                                     <div className={`w-full h-64 rounded-xl mb-4 ${project.color}`}></div>
                                     <h3 className="text-xl font-normal text-gray-900 mb-4">{project.name}</h3>
@@ -359,7 +350,7 @@ const HomePage = () => {
                                 </motion.div>
                             );
                         })}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 

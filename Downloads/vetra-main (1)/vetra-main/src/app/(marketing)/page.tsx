@@ -128,42 +128,51 @@ const HomePage = () => {
             <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 px-6 z-10 bg-transparent">
                 <div className="max-w-5xl mx-auto text-center">
                     <motion.div className="mb-8" {...fadeInUp}>
-                        <MagicText 
-                            text="Building bold brands with"
-                            className="text-[clamp(3rem,8vw,5.5rem)] leading-[1.05] font-semibold text-gray-900"
-                            wordClassName="text-[clamp(3rem,8vw,5.5rem)] font-semibold"
-                        />
-                        <MagicText 
-                            text="thoughtful design"
-                            className="text-[clamp(3rem,8vw,5.5rem)] leading-[1.05] text-gray-900 italic font-normal"
-                            wordClassName="text-[clamp(3rem,8vw,5.5rem)] italic font-normal"
-                        />
+                        <h1 className="text-[clamp(3rem,8vw,5.5rem)] leading-[1.1] font-semibold text-gray-900 mb-2">
+                            <span className="block">Building bold</span>
+                            <span className="block">brands with</span>
+                            <span className="block font-serif italic font-normal">thoughtful design</span>
+                        </h1>
                     </motion.div>
                     <motion.div className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10" {...fadeInUp}>
-                        <MagicText 
-                            text="At Awake, we help small startups tackle the world's biggest challenges with tailored solutions, guiding you from strategy to success in a competitive market."
-                            className="text-lg md:text-xl"
-                            wordClassName="text-lg md:text-xl"
-                        />
+                        <p className="text-lg md:text-xl leading-relaxed">
+                            At Awake, we help small startups tackle the world's biggest challenges with tailored solutions, guiding you from strategy to success in a competitive market.
+                        </p>
                     </motion.div>
-                    <div className="flex items-center justify-center gap-8">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8">
                         <button
                             onClick={() => router.push("/login")}
-                            className="flex items-center gap-2 bg-gradient-to-r from-[#6C49F8] to-[#8A57FF] text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:opacity-90 transition-opacity"
+                            className="group flex items-center gap-0 bg-[#6C49F8] hover:bg-[#5B3FE6] text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg transition-all duration-300 overflow-hidden"
                         >
-                            <span>Get Started</span>
-                            <span className="inline-flex w-8 h-8 rounded-full bg-white text-gray-900 items-center justify-center">
-                                <ArrowUpRight className="w-4 h-4" />
+                            <span className="px-2">Get Started</span>
+                            <span className="inline-flex w-10 h-10 rounded-full bg-white items-center justify-center ml-2">
+                                <ArrowUpRight className="w-4 h-4 text-[#6C49F8]" />
                             </span>
                         </button>
                         <div className="flex items-center gap-4">
-                            <div className="flex items-center gap-1">
-                                {[1, 2, 3, 4].map((i) => (
-                                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                            <div className="flex -space-x-2">
+                                {[
+                                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+                                    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+                                    "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop",
+                                    "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop",
+                                ].map((src, i) => (
+                                    <div
+                                        key={i}
+                                        className="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-gray-200"
+                                    >
+                                        <img src={src} alt={`Client ${i + 1}`} className="w-full h-full object-cover" />
+                                    </div>
                                 ))}
-                                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" style={{ clipPath: 'inset(0 50% 0 0)' }} />
                             </div>
-                            <p className="text-sm text-gray-600">Trusted by 200+ clients</p>
+                            <div className="flex flex-col">
+                                <div className="flex items-center gap-1 mb-1">
+                                    {[1, 2, 3, 4, 5].map((i) => (
+                                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                                    ))}
+                                </div>
+                                <p className="text-sm text-gray-600">Trusted by 200+ clients</p>
+                            </div>
                         </div>
                     </div>
                 </div>

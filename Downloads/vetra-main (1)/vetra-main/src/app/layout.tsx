@@ -3,7 +3,7 @@ import { cn } from "@/lib";
 import { generateMetadata } from "@/utils";
 import { base, heading } from "@/constants";
 import { Toaster } from "@/components/ui/sonner";
-import { subheading } from "@/constants/fonts";
+import { subheading, serif } from "@/constants/fonts";
 
 export const metadata = generateMetadata();
 
@@ -20,6 +20,7 @@ export default function RootLayout({
                     base.variable,
                     heading.variable,
                     subheading.variable,
+                    serif.variable,
                 )}
             >
                     <Toaster richColors theme="dark" position="top-right" />

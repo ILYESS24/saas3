@@ -1,4 +1,4 @@
-import { Poppins } from "next/font/google";
+import { Poppins, Playfair_Display } from "next/font/google";
 
 export const heading = Poppins({
     subsets: ["latin"],
@@ -16,4 +16,11 @@ export const subheading = Poppins({
     subsets: ["latin"],
     weight: ["400", "500", "600", "700"],
     variable: "--font-subheading",
+});
+
+export const serif = Playfair_Display({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"],
+    style: ["normal", "italic"],
+    variable: "--font-serif",
 });

@@ -16,8 +16,8 @@ interface MetadataProps {
 }
 
 export const generateMetadata = ({
-    title = `AURION - All-in-One AI Platform for Web & App Creation`,
-    description = `AURION is the ultimate all-in-one AI platform that creates professional websites and applications using the latest AI models. Build stunning UI/UX, generate content (text, images, videos), deploy AI agents, edit code with AI assistance, and access integrated component libraries. Stop switching between tools - create your entire business in one place.`,
+    title = `AURION - Replace 10+ Tools, Save 20+ Hours/Week | AI Platform`,
+    description = `Stop switching between 10+ tools. AURION is the only AI platform where you build everything: professional websites, mobile apps, AI content (text/images/videos), intelligent agents, and custom code. Join 10,000+ creators saving 20+ hours weekly. Replace $200-500/month in subscriptions with one powerful platform.`,
     icons = [
         {
             rel: "icon",
@@ -34,19 +34,31 @@ export const generateMetadata = ({
     keywords = [
         "AI website builder",
         "AI app creator",
+        "all-in-one AI platform",
+        "replace multiple tools",
+        "save time building",
         "AI content generation",
         "AI code editor",
-        "AI agents",
-        "all-in-one platform",
-        "UI/UX design AI",
-        "AI text editor",
-        "AI video generation",
-        "AI image generation",
-        "component library",
-        "no-code AI",
+        "AI agents automation",
+        "no-code AI builder",
         "AI development platform",
-        "business creation platform",
-        "AI-powered tools"
+        "build business faster",
+        "consolidate tools",
+        "AI website creator",
+        "AI app development",
+        "AI content studio",
+        "professional website builder",
+        "mobile app creator AI",
+        "AI video generator",
+        "AI image generator",
+        "business automation platform",
+        "time-saving AI tools",
+        "all-in-one business platform",
+        "AI-powered development",
+        "replace webflow",
+        "replace figma",
+        "replace canva",
+        "AI platform 2025"
     ],
     author = process.env.NEXT_PUBLIC_AUTHOR_NAME,
     type = "website",

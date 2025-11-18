@@ -77,7 +77,6 @@ const HomePage = () => {
         { label: "Services", href: "#services" },
         { label: "Work", href: "#work" },
         { label: "Pricing", href: "#pricing" },
-        { label: "Awards", href: "#award" },
     ];
 
     return (
@@ -571,42 +570,6 @@ const HomePage = () => {
                                         {faq.answer}
                                     </div>
                                 )}
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Awards Section */}
-            <section id="award" className="py-20 px-6 bg-transparent z-10 relative">
-                <div className="max-w-7xl mx-auto">
-                    <motion.div className="text-4xl md:text-6xl font-normal text-gray-900 mb-16 text-center" {...fadeInUp}>
-                        <MagicText 
-                            text="Accolades and achievements celebration our design excellence"
-                            className="text-4xl md:text-6xl"
-                            wordClassName="text-4xl md:text-6xl"
-                        />
-                    </motion.div>
-                    <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-6" {...fadeInUp}>
-                        {[
-                            { title: "Webflow Awards", description: "Celebrated for cutting-edge interaction design and seamless user experiences.", year: "2025" },
-                            { title: "Dribbble Awards", description: "Recognized for creative excellence and innovative design solutions", year: "2024" },
-                            { title: "awwwards Awards", description: "Honored with the Best Website Design for creativity, usability, and innovation.", year: "2023" },
-                        ].map((award, i) => (
-                            <motion.div 
-                                key={i} 
-                                className="bg-gray-100 p-8 rounded-2xl"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-50px" }}
-                                transition={{ duration: 0.5, delay: i * 0.1 }}
-                            >
-                                <div className="w-10 h-10 rounded-lg mb-4 flex items-center justify-center bg-gradient-to-br from-yellow-400 to-orange-500">
-                                    <span className="text-white text-xl">🏆</span>
-                                </div>
-                                <h3 className="text-xl font-normal text-gray-900 mb-2">{award.title}</h3>
-                                <p className="text-gray-600 mb-4">{award.description}</p>
-                                <p className="text-gray-900 font-normal">{award.year}</p>
                             </motion.div>
                         ))}
                     </motion.div>

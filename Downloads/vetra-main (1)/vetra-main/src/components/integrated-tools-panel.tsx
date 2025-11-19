@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Code, Brain, Globe, Zap, FileCode, Bot, ArrowRight, Clock, MessageSquare } from "lucide-react";
+import { Code, Brain, Globe, Zap, FileCode, Bot, ArrowRight, Clock, MessageSquare, Video, Film, Sparkles } from "lucide-react";
 import { apiRequest } from "@/lib/api-client";
 import { useRouter } from "next/navigation";
 import { useRealtime } from "@/hooks/use-realtime";
@@ -30,6 +30,9 @@ const toolIcons: Record<string, any> = {
   'bolt.new': Globe,
   'open-agent-builder': Bot,
   'open-webui': MessageSquare,
+  'mochi': Video,
+  'open-sora': Film,
+  'wan': Sparkles,
   vetra: Zap,
 };
 
@@ -40,6 +43,9 @@ const toolNames: Record<string, string> = {
   'bolt.new': 'Bolt.new',
   'open-agent-builder': 'Open Agent Builder',
   'open-webui': 'Open WebUI',
+  'mochi': 'Mochi',
+  'open-sora': 'Open Sora',
+  'wan': 'Wan',
   vetra: 'Vetra',
 };
 
@@ -100,6 +106,9 @@ export function IntegratedToolsPanel() {
       'bolt.new': '/tools/bolt',
       'open-agent-builder': '/workflows',
       'open-webui': '/tools/open-webui',
+      'mochi': '/tools/mochi',
+      'open-sora': '/tools/open-sora',
+      'wan': '/tools/wan',
     };
 
     const route = toolRoutes[tool.tool_name];

@@ -33,6 +33,7 @@ import { IntegratedToolsPanel } from "@/components/integrated-tools-panel";
 import { AIAutonomousGenerator } from "@/components/ai-autonomous-generator";
 import { SubscriptionUsage } from "@/components/subscription-usage";
 import { VideoStudioPanel } from "@/components/video-studio-panel";
+import { AURIONVerticalNavbar } from "@/components/vertical-navbar";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -174,6 +175,8 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-[#05070F] text-white">
       <div className="absolute inset-0 bg-gradient-to-b from-[#0C1122] via-[#05070F] to-[#05070F]" />
       <div className="relative">
+        {/* Navigation Verticale */}
+        <AURIONVerticalNavbar />
         {/* Header */}
         <header className="sticky top-0 z-40 border-b border-white/5 backdrop-blur-xl bg-[#05070F]/70">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">

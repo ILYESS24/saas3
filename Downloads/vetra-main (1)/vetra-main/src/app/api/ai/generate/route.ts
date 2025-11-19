@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getAuthenticatedUser } from '@/lib/supabase-server-api';
 import { aiOrchestrator } from '@/lib/ai/orchestrator';
 import { autonomousGenerator } from '@/lib/ai/autonomous-generator';
+import { canGenerateAI, trackAIGeneration, canMakeAPICall, trackAPICall } from '@/lib/subscription-checker';
 
 /**
  * POST /api/ai/generate
@@ -22,6 +23,34 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'Task and prompt are required' },
         { status: 400 }
+      );
+    }
+
+    // Vérifier les limites d'abonnement pour les générations AI
+    let aiType: 'text' | 'image' | 'video' = 'text';
+    if (task === 'image' || type === 'image') aiType = 'image';
+    if (task === 'video' || type === 'video') aiType = 'video';
+
+    const limitCheck = await canGenerateAI(user.id, aiType);
+    if (!limitCheck.allowed) {
+      return NextResponse.json(
+        { 
+          error: limitCheck.message || 'Limite de génération IA atteinte',
+          code: 'SUBSCRIPTION_LIMIT_EXCEEDED'
+        },
+        { status: 403 }
+      );
+    }
+
+    // Vérifier les limites d'appels API
+    const apiLimitCheck = await canMakeAPICall(user.id);
+    if (!apiLimitCheck.allowed) {
+      return NextResponse.json(
+        { 
+          error: apiLimitCheck.message || 'Limite d\'appels API atteinte',
+          code: 'SUBSCRIPTION_LIMIT_EXCEEDED'
+        },
+        { status: 403 }
       );
     }
 
@@ -64,6 +93,15 @@ export async function POST(request: NextRequest) {
       model,
       options,
     });
+
+    // Enregistrer la génération AI et l'appel API
+    await trackAIGeneration(user.id, aiType, {
+      task,
+      model: response.model,
+      tokens: response.tokens,
+      cost: response.cost,
+    });
+    await trackAPICall(user.id, '/api/ai/generate');
 
     // Enregistrer l'activité
     await (supabase as any)

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAuthenticatedUser } from '@/lib/supabase-server-api';
 import { aiOrchestrator } from '@/lib/ai/orchestrator';
+import { canGenerateAI, trackAIGeneration, canMakeAPICall, trackAPICall } from '@/lib/subscription-checker';
 
 /**
  * POST /api/ai/chat
@@ -21,6 +22,30 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'Messages array is required' },
         { status: 400 }
+      );
+    }
+
+    // Vérifier les limites d'abonnement pour les générations AI (chat = text)
+    const limitCheck = await canGenerateAI(user.id, 'text');
+    if (!limitCheck.allowed) {
+      return NextResponse.json(
+        { 
+          error: limitCheck.message || 'Limite de génération IA atteinte',
+          code: 'SUBSCRIPTION_LIMIT_EXCEEDED'
+        },
+        { status: 403 }
+      );
+    }
+
+    // Vérifier les limites d'appels API
+    const apiLimitCheck = await canMakeAPICall(user.id);
+    if (!apiLimitCheck.allowed) {
+      return NextResponse.json(
+        { 
+          error: apiLimitCheck.message || 'Limite d\'appels API atteinte',
+          code: 'SUBSCRIPTION_LIMIT_EXCEEDED'
+        },
+        { status: 403 }
       );
     }
 
@@ -117,6 +142,16 @@ export async function POST(request: NextRequest) {
         maxTokens: 2000,
       },
     });
+
+    // Enregistrer la génération AI et l'appel API
+    await trackAIGeneration(user.id, 'text', {
+      task: 'chat',
+      model: response.model,
+      tokens: response.tokens,
+      cost: response.cost,
+      messagesCount: messages.length,
+    });
+    await trackAPICall(user.id, '/api/ai/chat');
 
     // Enregistrer l'activité
     await (supabase as any)

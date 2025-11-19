@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAuthenticatedUser } from '@/lib/supabase-server-api';
+import { canCreateProject } from '@/lib/subscription-checker';
 
 export async function GET(request: NextRequest) {
   try {
@@ -29,6 +30,18 @@ export async function POST(request: NextRequest) {
 
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    // Vérifier les limites d'abonnement
+    const limitCheck = await canCreateProject(user.id);
+    if (!limitCheck.allowed) {
+      return NextResponse.json(
+        { 
+          error: limitCheck.message || 'Limite de projets atteinte',
+          code: 'SUBSCRIPTION_LIMIT_EXCEEDED'
+        },
+        { status: 403 }
+      );
     }
 
     const body = await request.json();

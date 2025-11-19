@@ -31,6 +31,7 @@ import { getCurrentUser, logout, User as UserType } from "@/lib/auth";
 import { MorphPanel } from "@/components/morph-panel";
 import { IntegratedToolsPanel } from "@/components/integrated-tools-panel";
 import { AIAutonomousGenerator } from "@/components/ai-autonomous-generator";
+import { SubscriptionUsage } from "@/components/subscription-usage";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -285,6 +286,21 @@ export default function DashboardPage() {
 
           {/* Générateur IA Autonome */}
           <AIAutonomousGenerator />
+
+          {/* Usage & Limites d'Abonnement */}
+          <section>
+            <Card className="bg-white/5 border-white/10">
+              <CardHeader>
+                <CardTitle>Usage & Limites</CardTitle>
+                <CardDescription className="text-white/60">
+                  Suivez votre utilisation et les limites de votre plan d'abonnement
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <SubscriptionUsage />
+              </CardContent>
+            </Card>
+          </section>
 
           {/* Outils intégrés et Activité */}
           <IntegratedToolsPanel />

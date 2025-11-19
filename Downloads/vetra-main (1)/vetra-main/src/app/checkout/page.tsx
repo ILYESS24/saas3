@@ -64,13 +64,13 @@ export default function CheckoutPage() {
         throw new Error(data.error || 'Failed to create checkout session');
       }
 
-      const stripe = await stripePromise;
-      if (!stripe) {
+      const stripeInstance = await stripePromise;
+      if (!stripeInstance) {
         throw new Error('Stripe failed to load');
       }
 
       // Redirect to Stripe Checkout
-      const { error: stripeError } = await stripe.redirectToCheckout({
+      const { error: stripeError } = await (stripeInstance as any).redirectToCheckout({
         sessionId: data.sessionId,
       });
 

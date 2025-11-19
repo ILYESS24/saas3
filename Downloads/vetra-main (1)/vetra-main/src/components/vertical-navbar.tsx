@@ -84,14 +84,14 @@ export function VerticalNavbar({
   };
 
   const Separator = () => (
-    <div className="my-1 w-[24px] h-[1.2px] bg-border mx-auto" aria-hidden="true" />
+    <div className="my-1 w-[24px] h-[1.2px] bg-white/10 mx-auto" aria-hidden="true" />
   );
 
   return (
     <div
       ref={outsideClickRef}
       className={cn(
-        "flex flex-col items-center gap-2 rounded-2xl border bg-background p-2 shadow-sm fixed left-4 top-1/2 -translate-y-1/2 z-50",
+        "flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-[#05070F]/80 backdrop-blur-xl p-2 shadow-lg fixed left-4 top-1/2 -translate-y-1/2 z-50",
         className
       )}
     >
@@ -115,8 +115,8 @@ export function VerticalNavbar({
             className={cn(
               "relative flex items-center justify-center rounded-xl px-2 py-2 w-full min-w-[48px] text-sm font-medium transition-colors duration-300",
               isSelected
-                ? cn("bg-muted", activeColor)
-                : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                ? "bg-white/10 text-white"
+                : "text-white/60 hover:bg-white/5 hover:text-white"
             )}
             title={tab.title}
           >

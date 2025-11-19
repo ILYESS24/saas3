@@ -10,6 +10,8 @@ import { motion } from "framer-motion";
 import { Skiper19 } from "@/components/svg-follow-scroll";
 import { MagicText } from "@/components/ui/magic-text";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
 
 // Animation variants for scroll animations
 const fadeInUp = {
@@ -99,20 +101,25 @@ const HomePage = () => {
             <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center justify-center px-4">
                 <div className="inline-flex items-center bg-gradient-to-r from-[#DAEEF4] via-[#F2F7FC] to-[#FBF0DB] rounded-full p-1 shadow-lg border border-white/70">
                     <div className="flex items-center gap-1 bg-white/70 backdrop-blur rounded-full px-2 py-1 text-sm text-gray-600">
-                        {navItems.map((item) => (
-                            <a
-                                key={item.href}
-                                href={item.href}
-                                onClick={() => setActiveNav(item.href)}
-                                className={`px-4 py-2 rounded-full transition-all ${
-                                    activeNav === item.href
-                                        ? "bg-white text-gray-900 shadow-sm"
-                                        : "text-gray-600 hover:text-gray-900"
-                                }`}
-                            >
-                                {item.label}
-                            </a>
-                        ))}
+                        <NavigationMenu className="flex-1">
+                            <NavigationMenuList className="space-x-0">
+                                {navItems.map((item) => (
+                                    <NavigationMenuItem key={item.href}>
+                                        <NavigationMenuLink
+                                            href={item.href}
+                                            onClick={() => setActiveNav(item.href)}
+                                            className={cn(
+                                                navigationMenuTriggerStyle(),
+                                                "rounded-full px-4 py-2 text-sm transition-all bg-transparent text-gray-600 hover:text-gray-900",
+                                                activeNav === item.href && "bg-white text-gray-900 shadow-sm"
+                                            )}
+                                        >
+                                            {item.label}
+                                        </NavigationMenuLink>
+                                    </NavigationMenuItem>
+                                ))}
+                            </NavigationMenuList>
+                        </NavigationMenu>
                     </div>
                 </div>
             </nav>
